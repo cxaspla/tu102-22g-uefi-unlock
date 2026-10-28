@@ -308,7 +308,7 @@ u40x_entry(EFI_HANDLE ImageHandle_, EFI_SYSTEM_TABLE *SystemTable_)
  * for the dump-only phase; 22 GiB geometry constants are adapted separately
  * after the native PROM capture (see PORT-NOTES.md).
  * ==========================================================================*/
-#define U40X_TARGET_DID         0x1E04u
+#define U40X_TARGET_DID         0x1E07u
 
 #define VAL_PLM_OPEN            0xFFFFFFFFUL
 #define VAL_SS0_UNLOCKED        0x88888888UL

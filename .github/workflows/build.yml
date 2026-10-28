@@ -1,0 +1,32 @@
+name: Build TU102 Unlock EFI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 安装编译工具链与依赖
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential gnu-efi python3
+
+      - name: 获取公共固件 blob
+        run: |
+          cd tools
+          bash get-blobs.sh
+
+      - name: 编译只读转储镜像 (TU102DUMP.EFI)
+        run: |
+          cd efi-unlock-tu102
+          DUMP_ONLY=1 bash build.sh
+
+      - name: 上传转储 EFI 文件
+        uses: actions/upload-artifact@v4
+        with:
+          name: TU102DUMP-EFI
+          path: efi-unlock-tu102/TU102DUMP.EFI

@@ -747,7 +747,8 @@ jobs:
         run: |
           cd efi-unlock-tu102
           printf '%s' "$FWSEC_B64" | tr -d '
- ' | base64 -d > blobs/fwsec_native.bin
+
+ ' | base64 -d > blobs/fwsec_native.bin
           echo "d54e1512845a091631abf374a0b748a226203bb0cf9ee4d7b0316023a957ea6f  blobs/fwsec_native.bin" | sha256sum -c -
 
       - name: 编译解锁镜像 (TU102UNLK.EFI)
